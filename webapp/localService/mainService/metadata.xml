@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZWEL_FIORI_INV_MGR_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Profile" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserId"/>
+                </Key>
+                <Property Name="UserId" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GoodsReceipt" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GoodsIssue" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GoodsReturn" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StockOverview" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StockCount" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickup" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PO" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PoType" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Document Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PoTypeDesc" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FromDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="PO Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="PO Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorNo" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Supplier" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorName" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurGroup" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Purch. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurGroupDesc" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GrStatus" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="GrStatusDesc" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RelIndicator" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Release ind." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RelIndDesc" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PoValue" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:label="Tot. val. rel." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrencyKey" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="DeliveryNote" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="Delivery Note" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DocumentDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Document Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostingDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Posting Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BatchMsgStr" Type="Edm.String" MaxLength="1024" sap:unicode="false" sap:label="String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="POPrintLabelNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.POToPOPrintLabel" FromRole="FromRole_POToPOPrintLabel" ToRole="ToRole_POToPOPrintLabel"/>
+                <NavigationProperty Name="POItemNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.POToPoItem" FromRole="FromRole_POToPoItem" ToRole="ToRole_POToPoItem"/>
+            </EntityType>
+            <EntityType Name="POItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                    <PropertyRef Name="Itemno"/>
+                    <PropertyRef Name="SubItemno"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubItemno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemType" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Item Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Issplit" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Materialno" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PoQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="PO Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Receivedquantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remainingquantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Postingquantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vendormaterialno" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Supp. Mat. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batchno" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="SerialNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sloc" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Storage Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Storagebin" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Storage Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Precision="12" Scale="3" sap:unicode="false" sap:label="Net Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LabelPrefix" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Label Prefix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LabelSuffix" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Label Suffix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartCounter" Type="Edm.Int32" sap:unicode="false" sap:label="START_COUNTER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LabelStart" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="LABEL_START" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LabelEnd" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="LABEL_END" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsSmartmeter" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialPrefix" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Serial prefix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialSuffix" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Serial suffix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialStartCntr" Type="Edm.Int32" sap:unicode="false" sap:label="Serial start counter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialStart" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Serial range" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialEnd" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Serial range" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PurchasingGroup" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurGroup"/>
+                </Key>
+                <Property Name="PurGroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Purch. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurGroupDesc" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GoodsReceiptSetting" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserId"/>
+                </Key>
+                <Property Name="UserId" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurGroup" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Purch. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="WorkOrder" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderNo"/>
+                </Key>
+                <Property Name="OrderNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrderDesc" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Action" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Action" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="FromDate" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="ToDate" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrderType" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrderTypeDesc" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Short Text" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrderStatus" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrderStatusDesc" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Requestor" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ReasonCode" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Movement type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Message" Type="Edm.String" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DefaultPickNo" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Pick num" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DefaultPickUser" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PickListStr" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Text" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <NavigationProperty Name="WorkOrderAdhocNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.WorkOrderToWorkOrderAdhoc" FromRole="FromRole_WorkOrderToWorkOrderAdhoc" ToRole="ToRole_WorkOrderToWorkOrderAdhoc"/>
+                <NavigationProperty Name="WorkOrderReservationNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.WorkOrderToWorkOrderReservation" FromRole="FromRole_WorkOrderToWorkOrderReservation" ToRole="ToRole_WorkOrderToWorkOrderReservation"/>
+            </EntityType>
+            <EntityType Name="WorkOrderReservation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Orderno"/>
+                    <PropertyRef Name="Itemno"/>
+                    <PropertyRef Name="Subitemno"/>
+                </Key>
+                <Property Name="Orderno" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Subitemno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemType" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Item Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsSplit" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Split Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Pick num" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PickUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Reservationno" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Reservation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReservationItemno" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Item no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Materialno" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StorageBin" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Storage Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StockAvailable" Type="Edm.String" MaxLength="13" sap:unicode="false" sap:unit="Uom" sap:label="StockAvailable" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RequiredQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Requirement qty" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Issuedquantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Postingquantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batchno" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="SerialNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sloc" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Storage Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activity" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Recipient" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Recipient" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecipientListStr" Type="Edm.String" MaxLength="1024" sap:unicode="false" sap:label="Case-Sensitive Length 1024" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:unicode="false" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IsSmartmeter" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialPrefix" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Serial prefix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialSuffix" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Serial suffix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialStartCntr" Type="Edm.Int32" sap:unicode="false" sap:label="Serial start counter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialStart" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Serial range" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerialEnd" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Serial range" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="WorkOrderSerialNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.WorkOrderReservationToWorkOrderSerial" FromRole="FromRole_WorkOrderReservationToWorkOrderSerial" ToRole="ToRole_WorkOrderReservationToWorkOrderSerial"/>
+            </EntityType>
+            <EntityType Name="WorkOrderAdhoc" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Orderno"/>
+                    <PropertyRef Name="Sequenceno"/>
+                </Key>
+                <Property Name="Orderno" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sequenceno" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Materialno" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostingQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Batchno" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="SerialNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sloc" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Storage Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ReturnReason" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ReasonCode"/>
+                </Key>
+                <Property Name="MvntType" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Movement type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReasonCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Reason for Mvmt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReasonCodeDesc" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Reason" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Materialno"/>
+                </Key>
+                <Property Name="Materialno" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialDesc" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemType" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Item Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroupDesc" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Matl Grp Desc." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Uom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <NavigationProperty Name="MaterialStockNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.MaterialToMaterialStock" FromRole="FromRole_MaterialToMaterialStock" ToRole="ToRole_MaterialToMaterialStock"/>
+                <NavigationProperty Name="MaterialSerialNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.MaterialToMaterialSerial" FromRole="FromRole_MaterialToMaterialSerial" ToRole="ToRole_MaterialToMaterialSerial"/>
+            </EntityType>
+            <EntityType Name="MaterialStock" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Materialno"/>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="Sloc"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="Materialno" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sloc" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Storage Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StorageBin" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Storage Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SafetyStock" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxAvaildate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Iscumulated" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unrestricted" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Unrestricted" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Consignment" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Cnsgt in QInsp." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Reserved" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Restricted-Use" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Onorder" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Vendorno" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorName" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PhyInvDoc" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Documentno"/>
+                </Key>
+                <Property Name="Documentno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Phys. Inv. Doc." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FiscalYear" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Fiscal Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlantName" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Name 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sloc" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Storage Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SlocDesc" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PhyInvDocItemNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocToPhyInvDocItem" FromRole="FromRole_PhyInvDocToPhyInvDocItem" ToRole="ToRole_PhyInvDocToPhyInvDocItem"/>
+            </EntityType>
+            <EntityType Name="PhyInvDocItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Documentno"/>
+                    <PropertyRef Name="Itemno"/>
+                </Key>
+                <Property Name="Documentno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Phys. Inv. Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemType" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Item Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Materialno" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batchno" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StorageBin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Storage Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostingQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Zeroflag" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PhyInvDocItemSerialNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItemToPhyInvDocItemSerial" FromRole="FromRole_PhyInvDocItemToPhyInvDocItemSerial" ToRole="ToRole_PhyInvDocItemToPhyInvDocItemSerial"/>
+            </EntityType>
+            <EntityType Name="PhyInvDocItemSerial" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Documentno"/>
+                    <PropertyRef Name="Itemno"/>
+                    <PropertyRef Name="Serialno"/>
+                </Key>
+                <Property Name="Documentno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Phys. Inv. Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="SerialNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GoodsReceiptStatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StatusCode"/>
+                </Key>
+                <Property Name="StatusCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Goods Receipt Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Text, 40 Characters Long" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ItemTypeHelp" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Type"/>
+                </Key>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Item Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Text, 40 Characters Long" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialGroupHelp" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialGroup"/>
+                </Key>
+                <Property Name="MaterialGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Matl Grp Desc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="WorkOrderSerial" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Orderno"/>
+                    <PropertyRef Name="Subitemno"/>
+                    <PropertyRef Name="Itemno"/>
+                    <PropertyRef Name="Serialno"/>
+                </Key>
+                <Property Name="Orderno" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Subitemno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Serial" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialSerial" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Materialno"/>
+                </Key>
+                <Property Name="Materialno" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipment" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StockIndicator" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Special Stock" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StockIndicatorDesc" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PickHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pickno"/>
+                </Key>
+                <Property Name="Pickno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Pick num" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Job Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Orderno" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlantName" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Name 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sloc" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Storage Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SlocDesc" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProjectManager" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Supervisior" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CollectedBy" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PickItemNav" Relationship="ZWEL_FIORI_INV_MGR_SRV.PickHeaderToPickItem" FromRole="FromRole_PickHeaderToPickItem" ToRole="ToRole_PickHeaderToPickItem"/>
+            </EntityType>
+            <EntityType Name="PickItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pickno"/>
+                    <PropertyRef Name="Itemno"/>
+                </Key>
+                <Property Name="ItemType" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Item Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Pick num" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Materialno" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batchno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Serial Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="Uom" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="RequirementDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Reqmts date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="POPrintLabel" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                    <PropertyRef Name="Materialno"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Storagebin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Storage Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Materialno" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotalCopies" Type="Edm.Byte" sap:unicode="false" sap:label="TOTAL_COPIES" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Attachment" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderNo"/>
+                    <PropertyRef Name="PickNo"/>
+                </Key>
+                <Property Name="FileName" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PickNo" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Pick num" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Binary" sap:unicode="false" sap:label="Binary String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="PhyInvDocItemToPhyInvDocItemSerial" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItem" Multiplicity="0..1" Role="FromRole_PhyInvDocItemToPhyInvDocItemSerial"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItemSerial" Multiplicity="*" Role="ToRole_PhyInvDocItemToPhyInvDocItemSerial"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PhyInvDocItemToPhyInvDocItemSerial">
+                        <PropertyRef Name="Documentno"/>
+                        <PropertyRef Name="Itemno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PhyInvDocItemToPhyInvDocItemSerial">
+                        <PropertyRef Name="Documentno"/>
+                        <PropertyRef Name="Itemno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MaterialToMaterialSerial" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.Material" Multiplicity="0..1" Role="FromRole_MaterialToMaterialSerial"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.MaterialSerial" Multiplicity="*" Role="ToRole_MaterialToMaterialSerial"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToMaterialSerial">
+                        <PropertyRef Name="Materialno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToMaterialSerial">
+                        <PropertyRef Name="Materialno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MaterialToMaterialStock" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.Material" Multiplicity="0..1" Role="FromRole_MaterialToMaterialStock"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.MaterialStock" Multiplicity="*" Role="ToRole_MaterialToMaterialStock"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToMaterialStock">
+                        <PropertyRef Name="Materialno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToMaterialStock">
+                        <PropertyRef Name="Materialno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="WorkOrderReservationToWorkOrderSerial" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.WorkOrderReservation" Multiplicity="0..1" Role="FromRole_WorkOrderReservationToWorkOrderSerial"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.WorkOrderSerial" Multiplicity="*" Role="ToRole_WorkOrderReservationToWorkOrderSerial"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_WorkOrderReservationToWorkOrderSerial">
+                        <PropertyRef Name="Subitemno"/>
+                        <PropertyRef Name="Itemno"/>
+                        <PropertyRef Name="Orderno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_WorkOrderReservationToWorkOrderSerial">
+                        <PropertyRef Name="Subitemno"/>
+                        <PropertyRef Name="Itemno"/>
+                        <PropertyRef Name="Orderno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="WorkOrderToWorkOrderAdhoc" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.WorkOrder" Multiplicity="0..1" Role="FromRole_WorkOrderToWorkOrderAdhoc"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.WorkOrderAdhoc" Multiplicity="*" Role="ToRole_WorkOrderToWorkOrderAdhoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_WorkOrderToWorkOrderAdhoc">
+                        <PropertyRef Name="OrderNo"/>
+                    </Principal>
+                    <Dependent Role="ToRole_WorkOrderToWorkOrderAdhoc">
+                        <PropertyRef Name="Orderno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="WorkOrderToWorkOrderReservation" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.WorkOrder" Multiplicity="0..1" Role="FromRole_WorkOrderToWorkOrderReservation"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.WorkOrderReservation" Multiplicity="*" Role="ToRole_WorkOrderToWorkOrderReservation"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_WorkOrderToWorkOrderReservation">
+                        <PropertyRef Name="OrderNo"/>
+                    </Principal>
+                    <Dependent Role="ToRole_WorkOrderToWorkOrderReservation">
+                        <PropertyRef Name="Orderno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="POToPoItem" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PO" Multiplicity="0..1" Role="FromRole_POToPoItem"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.POItem" Multiplicity="*" Role="ToRole_POToPoItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_POToPoItem">
+                        <PropertyRef Name="PoNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_POToPoItem">
+                        <PropertyRef Name="PoNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="POToPOPrintLabel" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PO" Multiplicity="0..1" Role="FromRole_POToPOPrintLabel"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.POPrintLabel" Multiplicity="*" Role="ToRole_POToPOPrintLabel"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_POToPOPrintLabel">
+                        <PropertyRef Name="PoNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_POToPOPrintLabel">
+                        <PropertyRef Name="PoNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PickHeaderToPickItem" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PickHeader" Multiplicity="0..1" Role="FromRole_PickHeaderToPickItem"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PickItem" Multiplicity="*" Role="ToRole_PickHeaderToPickItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PickHeaderToPickItem">
+                        <PropertyRef Name="Pickno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PickHeaderToPickItem">
+                        <PropertyRef Name="Pickno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PhyInvDocToPhyInvDocItem" sap:content-version="1">
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PhyInvDoc" Multiplicity="0..1" Role="FromRole_PhyInvDocToPhyInvDocItem"/>
+                <End Type="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItem" Multiplicity="*" Role="ToRole_PhyInvDocToPhyInvDocItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PhyInvDocToPhyInvDocItem">
+                        <PropertyRef Name="Documentno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PhyInvDocToPhyInvDocItem">
+                        <PropertyRef Name="Documentno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZWEL_FIORI_INV_MGR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ProfileSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.Profile" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PO" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchasingGroupSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PurchasingGroup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GoodsReceiptSettingSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.GoodsReceiptSetting" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="WorkOrderSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.WorkOrder" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="WorkOrderReservationSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.WorkOrderReservation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="WorkOrderAdhocSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.WorkOrderAdhoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ReturnReasonSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.ReturnReason" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialStockSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.MaterialStock" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PhyInvDocSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PhyInvDoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PhyInvDocItemSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PhyInvDocItemSerialSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItemSerial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GoodsReceiptStatusSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.GoodsReceiptStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemTypeHelpSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.ItemTypeHelp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialGroupHelpSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.MaterialGroupHelp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="WorkOrderSerialSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.WorkOrderSerial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialSerialSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.MaterialSerial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PickHeaderSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PickHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PickItemSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.PickItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POPrintLabelSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.POPrintLabel" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AttachmentSet" EntityType="ZWEL_FIORI_INV_MGR_SRV.Attachment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="WorkOrderToWorkOrderAdhocSet" Association="ZWEL_FIORI_INV_MGR_SRV.WorkOrderToWorkOrderAdhoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="WorkOrderSet" Role="FromRole_WorkOrderToWorkOrderAdhoc"/>
+                    <End EntitySet="WorkOrderAdhocSet" Role="ToRole_WorkOrderToWorkOrderAdhoc"/>
+                </AssociationSet>
+                <AssociationSet Name="MaterialToMaterialStockSet" Association="ZWEL_FIORI_INV_MGR_SRV.MaterialToMaterialStock" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_MaterialToMaterialStock"/>
+                    <End EntitySet="MaterialStockSet" Role="ToRole_MaterialToMaterialStock"/>
+                </AssociationSet>
+                <AssociationSet Name="MaterialToMaterialSerialSet" Association="ZWEL_FIORI_INV_MGR_SRV.MaterialToMaterialSerial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_MaterialToMaterialSerial"/>
+                    <End EntitySet="MaterialSerialSet" Role="ToRole_MaterialToMaterialSerial"/>
+                </AssociationSet>
+                <AssociationSet Name="WorkOrderReservationToWorkOrderSerialSet" Association="ZWEL_FIORI_INV_MGR_SRV.WorkOrderReservationToWorkOrderSerial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="WorkOrderReservationSet" Role="FromRole_WorkOrderReservationToWorkOrderSerial"/>
+                    <End EntitySet="WorkOrderSerialSet" Role="ToRole_WorkOrderReservationToWorkOrderSerial"/>
+                </AssociationSet>
+                <AssociationSet Name="POToPOPrintLabelSet" Association="ZWEL_FIORI_INV_MGR_SRV.POToPOPrintLabel" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="POSet" Role="FromRole_POToPOPrintLabel"/>
+                    <End EntitySet="POPrintLabelSet" Role="ToRole_POToPOPrintLabel"/>
+                </AssociationSet>
+                <AssociationSet Name="PhyInvDocItemToPhyInvDocItemSerialSet" Association="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocItemToPhyInvDocItemSerial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PhyInvDocItemSet" Role="FromRole_PhyInvDocItemToPhyInvDocItemSerial"/>
+                    <End EntitySet="PhyInvDocItemSerialSet" Role="ToRole_PhyInvDocItemToPhyInvDocItemSerial"/>
+                </AssociationSet>
+                <AssociationSet Name="WorkOrderToWorkOrderReservationSet" Association="ZWEL_FIORI_INV_MGR_SRV.WorkOrderToWorkOrderReservation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="WorkOrderSet" Role="FromRole_WorkOrderToWorkOrderReservation"/>
+                    <End EntitySet="WorkOrderReservationSet" Role="ToRole_WorkOrderToWorkOrderReservation"/>
+                </AssociationSet>
+                <AssociationSet Name="PhyInvDocToPhyInvDocItemSet" Association="ZWEL_FIORI_INV_MGR_SRV.PhyInvDocToPhyInvDocItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PhyInvDocSet" Role="FromRole_PhyInvDocToPhyInvDocItem"/>
+                    <End EntitySet="PhyInvDocItemSet" Role="ToRole_PhyInvDocToPhyInvDocItem"/>
+                </AssociationSet>
+                <AssociationSet Name="PickHeaderToPickItemSet" Association="ZWEL_FIORI_INV_MGR_SRV.PickHeaderToPickItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PickHeaderSet" Role="FromRole_PickHeaderToPickItem"/>
+                    <End EntitySet="PickItemSet" Role="ToRole_PickHeaderToPickItem"/>
+                </AssociationSet>
+                <AssociationSet Name="POToPoItemSet" Association="ZWEL_FIORI_INV_MGR_SRV.POToPoItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="POSet" Role="FromRole_POToPoItem"/>
+                    <End EntitySet="POItemSet" Role="ToRole_POToPoItem"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="https://vhweowdeci.sap.welnet.co.nz:44300/sap/opu/odata/sap/ZWEL_FIORI_INV_MGR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://vhweowdeci.sap.welnet.co.nz:44300/sap/opu/odata/sap/ZWEL_FIORI_INV_MGR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

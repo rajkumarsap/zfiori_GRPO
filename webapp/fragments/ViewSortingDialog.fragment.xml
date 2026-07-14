@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+        <ViewSettingsDialog
+            id="id_viewSortingDialog"
+            confirm="onConfirmButtonPressInSortingDialog">
+                <sortItems>
+                    <ViewSettingsItem
+                        id="id_master_poNosort_viewsetting"
+                        text="{i18n>masterPoNumberSort}"
+                        key="PoNumber"
+                        selected="true"/>
+                    <ViewSettingsItem
+                        id="id_master_vendorName_viewsetting"
+                        text="{i18n>masterVendorNameSort}"
+                        key="VendorName"/>
+                    <ViewSettingsItem
+                        id="id_master_Date_viewsetting"
+                        text="{i18n>masterDateSort}"
+                        key="CreatedOn"/>
+                </sortItems>
+        </ViewSettingsDialog>
+</core:FragmentDefinition>

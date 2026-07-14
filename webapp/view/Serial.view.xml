@@ -1,0 +1,244 @@
+<mvc:View
+    controllerName="com.wel.goodsreceipt.controller.Serial"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:l="sap.ui.layout"
+    xmlns:ndc="sap.ndc"
+>
+    <semantic:SemanticPage
+        id="LablePage"
+        preserveHeaderStateOnScroll="true"
+        showFooter="true"
+    >
+        <semantic:titleHeading>
+            <Title
+                id="id_serial_title"
+                text="{i18n>SerialNumbers}"
+                wrapping="true"
+            />
+        </semantic:titleHeading>
+       
+        <semantic:headerContent>
+            <VBox
+                id="id_serial_page_titleheading"
+                justifyContent="Center"
+                class="sapUiTinyMarginBottom"
+            >
+                <l:HorizontalLayout id="id_thirdcol_header_serial">
+                    <Label
+                        id="id_Serial_Materialno"
+                        text="{i18n>Materialno}"
+                        width="8em"
+                    />
+                    <Text
+                        id="id_Serial_page_text"
+                        class="sapUiSmallMarginEnd"
+                        text=":"
+                        width=".1em"
+                    />
+                    <Text id="id_serial_text_for_Materialno" />
+                </l:HorizontalLayout>
+            </VBox>
+            <VBox
+                id="id_serial_column_titleheading1"
+                justifyContent="Center"
+                class="sapUiTinyMarginBottom"
+            >
+                <l:HorizontalLayout id="id_serial_col_header1">
+                    <Label
+                        id="id_serial_ShortText"
+                        text="{i18n>shortText}"
+                        width="8em"
+                    />
+                    <Text
+                        id="id_serial_page_text1"
+                        class="sapUiSmallMarginEnd"
+                        text=":"
+                        width=".1em"
+                    />
+                    <Text id="id_serial_text_for_ShortText" />
+                </l:HorizontalLayout>
+            </VBox>
+        </semantic:headerContent>
+        <semantic:content>
+
+        
+            <VBox>
+
+            <HBox >
+               <VBox>
+                  
+
+                    <HBox>  
+                    
+                        <Label text="From"/>
+                        <Input id="fromSerial1"/>
+
+                        <Label text="To"/>
+                        <Input id="toSerial1"/>
+
+                        <Button
+                            text="Fill Range"
+                            press=".onFillRange"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+            
+                <Table
+                    id="id_serial_table"
+                    inset="false"
+                    items="{
+                    path: 'serialJsonModel>/results'
+                }"
+                    mode="None"
+                    
+                >
+                    <headerToolbar>
+                        <OverflowToolbar id="id_overflow_in_serial">
+                            <content>
+                                <ToolbarSpacer id="id_toolbar_spacer_serial" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column
+                            id="id_serial_column_itemno"
+                            hAlign="Begin"
+                            popinDisplay="Inline"
+                        >
+                            <Text
+                                id="id_serial_textField_subitemNumber"
+                                text=""
+                            />
+                        </Column>
+                        <Column
+                            id="id_serial_column_serialPrefix"
+                            hAlign="Center"
+                            popinDisplay="Inline"
+                        >
+                            <Text
+                                id="id_serial_textfield_serialPrefix"
+                                text="{i18n>Serial}"
+                            />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="_IDGenColumnListItem1">
+                            <cells>
+                                <ObjectIdentifier
+                                    id="id_cell_serial_itemno"
+                                    title="{serialJsonModel>SubItemno}"
+                                    text=""
+                                />
+                                <Input
+                                    id="id_serial_input_field_serialPrefix"
+                                    value="{serialJsonModel>Serialno}"
+                                    change=""
+                                    class="input_css"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+                <VBox
+                    width="100%"
+                    id="idSmartVBox"
+                    justifyContent="Center"
+                >
+                    <MessageStrip
+                        id="idTheEndValueOfTheSerialNumberRangeIsAutomaticallyDeterminedBasedOnTheStartValueAndPostingQuantityMessageStrip"
+				        text="The end value of the serial number range is automatically determined based on the start value and posting quantity."
+				        type="Information"
+				        showIcon="true"
+				        class="sapUiMediumMarginBottom"               
+                />
+                    <l:HorizontalLayout id="idStartHBox">
+                        <Label
+                            id="idStartLabel"
+                            text="Start Serial No."
+                            width="8em"
+                            labelFor="idStartSerialInput"
+                            class="sapUiTinyMarginTop"
+                        />
+                        <Text
+                            id="idStartColon"
+                            text=":"
+                            width="0.5em"
+                            class="sapUiTinyMarginTop"
+                        />
+                        <Input
+                            id="idStartSerialInput"
+                            width="15em"
+                            value="{oSmartMeterSerialModel>/SerialStart}"
+                            showValueHelp="false"
+                            valueHelpIconSrc="sap-icon://bar-code"
+                            valueHelpRequest="onInputValueHelpRequest"
+                            class="input_css sapUiTinyMarginEnd"
+                            change="onSerialStartInputChange"
+                        />
+                        <ndc:BarcodeScannerButton
+                            id="idBarcodeScannerButton"
+                            scanSuccess="onScanSuccess"
+			                scanFail="onScanError"
+                        />
+                    </l:HorizontalLayout>
+
+                    <!-- Spacer -->
+                    <l:HorizontalLayout height="0.5rem" />
+
+                    <!-- Second Row: "End" Label -->
+                    <l:HorizontalLayout id="idEndHBox">
+                        <Label
+                            id="idEndLabel"
+                            text="End Serial No."
+                            width="8em"
+                            labelFor="idEndSerialInput"
+                            class="sapUiTinyMarginTop"
+                        />
+                        <Text
+                            id="idEndColon"
+                            text=":"
+                            width="0.5em"
+                            class="sapUiTinyMarginTop"
+                        />
+                        <Input
+                            id="idEndSerialInput"
+                            width="15em"
+                            value="{oSmartMeterSerialModel>/SerialEnd}"
+                            showValueHelp="false"
+                            valueHelpIconSrc="sap-icon://bar-code"
+                            valueHelpRequest="onInputValueHelpRequest"
+                            class="input_css"
+                            editable="false"
+                        />
+                    </l:HorizontalLayout>
+                </VBox>
+            </VBox>
+        </semantic:content>
+        <!--Semantic ShareMenu Buttons-->
+        <semantic:closeAction>
+            <semantic:CloseAction
+                id="closeColumn"
+                press="onCloseDetailPress"
+            />
+        </semantic:closeAction>
+        <semantic:positiveAction>
+            <semantic:PositiveAction
+                id="id_saveserial_serialPage"
+                visible="true"
+                text="{i18n>Save}"
+                press="onSerialSaveButtonPress"
+            />
+        </semantic:positiveAction>
+        <semantic:negativeAction>
+            <semantic:NegativeAction
+                id="id_reset"
+                visible="true"
+                text="{i18n>Cancel}"
+                press="onCloseDetailPress"
+            />
+        </semantic:negativeAction>
+    </semantic:SemanticPage>
+</mvc:View>

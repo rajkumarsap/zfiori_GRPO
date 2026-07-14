@@ -1,0 +1,186 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "com.wel.goodsreceipt",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZWEL_FIORI_INV_MGR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "@sap/ux-app-migrator:freestyle",
+            "version": "1.28.0",
+            "toolsId": "b2283e85-0e27-4b75-9869-18c53a68982d"
+        }
+    },
+    "sap.ui": {
+        "fullWidth": false,
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.97.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {},
+                "sap.ndc": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.wel.goodsreceipt.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "controlId": "layout",
+                "viewPath": "com.wel.goodsreceipt.view",
+                "controlAggregation": "beginColumnPages",
+                "bypassed": {
+                    "target": "notFound"
+                }
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "master",
+                    "target": "master"
+                },
+                {
+                    "pattern": "POHeaderSet/{PONumber}",
+                    "name": "object",
+                    "target": [
+                        "master",
+                        "object"
+                    ]
+                },
+                {
+                    "pattern": "POHeaderSet/{PONumber}/Batch/{Itemno}",
+                    "name": "batch",
+                    "target": [
+                        "master",
+                        "object",
+                        "batch"
+                    ]
+                },
+                {
+                    "pattern": "POHeaderSet/{PONumber}/Label/{Itemno}",
+                    "name": "label",
+                    "target": [
+                        "master",
+                        "object",
+                        "label"
+                    ]
+                },
+                {
+                    "pattern": "POHeaderSet/{PONumber}/Serial/{Itemno}",
+                    "name": "serial",
+                    "target": [
+                        "master",
+                        "object",
+                        "serial"
+                    ]
+                }
+            ],
+            "targets": {
+                "master": {
+                    "viewName": "Master",
+                    "viewLevel": 1,
+                    "viewId": "master",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "object": {
+                    "viewName": "Detail",
+                    "viewId": "detail",
+                    "viewLevel": 2,
+                    "controlAggregation": "midColumnPages"
+                },
+                "batch": {
+                    "viewName": "BatchSplit",
+                    "viewId": "batchSplit",
+                    "viewLevel": 3,
+                    "controlAggregation": "endColumnPages"
+                },
+                "label": {
+                    "viewName": "Label",
+                    "viewId": "label",
+                    "viewLevel": 3,
+                    "controlAggregation": "endColumnPages"
+                },
+                "serial": {
+                    "viewName": "Serial",
+                    "viewId": "serial",
+                    "viewLevel": 3,
+                    "controlAggregation": "endColumnPages"
+                },
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.wel.goodsreceipt.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

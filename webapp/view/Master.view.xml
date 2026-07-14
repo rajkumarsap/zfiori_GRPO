@@ -1,0 +1,181 @@
+<mvc:View
+    controllerName="com.wel.goodsreceipt.controller.Master"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic">
+        <semantic:SemanticPage
+            id="masterPage"
+            preserveHeaderStateOnScroll="true"
+            toggleHeaderOnTitleClick="false"
+            showFooter="false">
+                <semantic:titleHeading>
+                    <Title
+                        id="masterPageTitle"
+                        text="{masterView>/title}"
+                        level="H2"/>
+                </semantic:titleHeading>
+                <semantic:content>
+                    <!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+                    <List
+                        id="id_list"
+                        width="auto"
+                        class="sapFSemanticPageAlignContent"
+                        items="{ path: 'PoSetJson>/results' }"
+                        busyIndicatorDelay="{masterView>/delay}"
+                        noDataText="{masterView>/noDataText}"
+                        mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+                        growing="true"
+                        growingTriggerText="Load More"
+                        updateStarted="onUpdateStarted"
+                        growingScrollToLoad="false"
+                        updateFinished="onUpdateFinished"
+                        selectionChange="onPOListItemSelected"
+                        growingThreshold="15">
+                            <headerToolbar>
+                                <OverflowToolbar id="id_overflowtoolbar_master">
+                                    <SearchField
+                                        id="searchField"
+                                        showRefreshButton="true"
+                                        tooltip="{i18n>masterSearchTooltip}"
+                                        placeholder="Search by purchase order"
+                                        search="onSearchPO"
+                                        width="20rem">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="id_master_overflowtoolbar_layoutdata"
+                                                    minWidth="150px"
+                                                    maxWidth="240px"
+                                                    shrinkable="true"
+                                                    priority="NeverOverflow"/>
+                                            </layoutData>
+                                    </SearchField>
+                                    <ToolbarSpacer id="id_master_toolbarspacer"/>
+                                    <Button
+                                        id="sortButton"
+                                        press="onOpenSortingDialogForPO"
+                                        icon="sap-icon://sort"
+                                        type="Transparent"/>
+                                    <Button
+                                        id="dialogOpenButton"
+                                        press="onOpenPOSelectDialog"
+                                        icon="sap-icon://filter"
+                                        type="Transparent"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <items>
+                            <!-- below press event is usefull in mobile view. if this press event is not added then list select won't work in mobile -->
+                                <ObjectListItem
+                                    id="id_objectListItem_list_master"
+                                    type="Navigation"
+                                    press="onPOListItemSelected"
+                                    title="{PoSetJson>VendorName}"
+                                    number="{PoSetJson>PoNumber}"
+                                    numberState="{path: 'PoSetJson>RelIndicator',formatter:'.formatter.oColorFormat'}">
+                                    <firstStatus>
+                                        <ObjectStatus
+                                            id="id_status_createdOn_ObjectStatus"
+                                            text="{path: 'PoSetJson>CreatedOn',formatter:'.formatter.oDateFormat'}"/>
+                                    </firstStatus>
+                                    <attributes>
+                                        <ObjectAttribute
+                                            id="id_master_createdBy_objectAttribute_1"
+                                            text="{path: 'PoSetJson>CreatedBy'}"/>
+                                        <ObjectAttribute
+                                            id="id_master_createdBy_objectAttribute_2"
+                                            text="{PoSetJson>GrStatusDesc}"
+                                            visible="{PoSetJson>visibilityFlag}"/>
+                                    </attributes>
+                                </ObjectListItem>
+                            </items>
+                    </List>
+                 </semantic:content>
+        </semantic:SemanticPage>
+        <!-- <Page id="masterPage">
+            <headerContent>
+                <Bar >
+                <contentLeft>
+                    <Title
+                        id="masterPageTitle"
+                        text="{masterView>/title}"
+                        wrapping="true"
+                    />
+                </contentLeft>
+                </Bar>
+            </headerContent>
+            <content>
+                <List
+                        id="id_list"
+                        width="auto"
+                        class="sapFDynamicPageAlignContent"
+                        items="{ path: 'PoSetJson>/results' }"
+                        busyIndicatorDelay="{masterView>/delay}"
+                        noDataText="{masterView>/noDataText}"
+                        mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+                        growing="true"
+                        growingTriggerText="Load More"
+                        updateStarted="onUpdateStarted"
+                        growingScrollToLoad="false"
+                        updateFinished="onUpdateFinished"
+                        selectionChange="onPOListItemSelected"
+                        growingThreshold="15">
+                            <headerToolbar>
+                                <OverflowToolbar id="id_overflowtoolbar_master">
+                                    <SearchField
+                                        id="searchField"
+                                        showRefreshButton="true"
+                                        tooltip="{i18n>masterSearchTooltip}"
+                                        placeholder="Search by purchase order"
+                                        search="onSearchPO"
+                                        width="20rem">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="id_master_overflowtoolbar_layoutdata"
+                                                    minWidth="150px"
+                                                    maxWidth="240px"
+                                                    shrinkable="true"
+                                                    priority="NeverOverflow"/>
+                                            </layoutData>
+                                    </SearchField>
+                                    <ToolbarSpacer id="id_master_toolbarspacer"/>
+                                    <Button
+                                        id="sortButton"
+                                        press="onOpenSortingDialogForPO"
+                                        icon="sap-icon://sort"
+                                        type="Transparent"/>
+                                    <Button
+                                        id="dialogOpenButton"
+                                        press="onOpenPOSelectDialog"
+                                        icon="sap-icon://filter"
+                                        type="Transparent"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <items>
+                           
+                                <ObjectListItem
+                                    id="id_objectListItem_list_master"
+                                    type="Navigation"
+                                    press="onPOListItemSelected"
+                                    title="{PoSetJson>VendorName}"
+                                    number="{PoSetJson>PoNumber}"
+                                    numberState="{path: 'PoSetJson>RelIndicator',formatter:'.formatter.oColorFormat'}">
+                                    <firstStatus>
+                                        <ObjectStatus
+                                            id="id_status_createdOn_ObjectStatus"
+                                            text="{path: 'PoSetJson>CreatedOn',formatter:'.formatter.oDateFormat'}"/>
+                                    </firstStatus>
+                                    <attributes>
+                                        <ObjectAttribute
+                                            id="id_master_createdBy_objectAttribute_1"
+                                            text="{path: 'PoSetJson>CreatedBy'}"/>
+                                        <ObjectAttribute
+                                            id="id_master_createdBy_objectAttribute_2"
+                                            text="{PoSetJson>GrStatusDesc}"
+                                            visible="{PoSetJson>visibilityFlag}"/>
+                                    </attributes>
+                                </ObjectListItem>
+                            </items>
+                    </List>
+            </content>
+        </Page> -->
+</mvc:View>

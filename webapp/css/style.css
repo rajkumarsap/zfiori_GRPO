@@ -1,0 +1,92 @@
+/* Enter your custom styles here */
+
+
+.labelPadding {
+    line-height: 3;
+}
+
+@media only screen and (max-width: 600px) {
+    .sapMListTblSubCnt {
+        display: block;
+        box-sizing: border-box;
+        padding-top: 0rem !important;
+        padding-right: 4rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0rem;
+    }
+}
+
+.rest_css>span {
+    background: radial-gradient(circle, rgba(247, 26, 26, 1) 0%, rgba(230, 45, 58, 1) 100%);
+    width: auto;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    color: white;
+    border: 1px rgba(247, 26, 26, 1);
+    font-weight: bold;
+}
+
+.input_css>div {
+    border-color: #9ecaed  !important;
+    box-shadow: 0 0 10px #9ecaed !important;
+    border-radius: 5px  !important;
+}
+
+.rowColorChangeInpro {
+    position: relative;
+    color: #e78c07;
+}
+.rowColorChangeApp {
+    position: relative;
+    color: #2b7c2b;
+}
+.rowColorChangeError {
+    position: relative;
+    color: #bb0000;
+}
+
+
+/* .itemTypeButton[data-sani='BATCH'] .sapMBtnInner{
+    background-color:  #2B7D2B !important;
+    border-color:  #2B7D2B !important;
+    background-image: none !important;
+    text-shadow: none !important;
+}
+
+.itemTypeButton[data-sani='LABEL'] .sapMBtnInner{
+    background-color: #427cac !important;
+    border-color: #427cac !important;
+    background-image: none !important;
+    text-shadow: none !important;
+}
+
+.itemTypeButton[data-sani='STOCK'] .sapMBtnInner{
+    background-color:  #5E696E !important;
+    border-color:  #5E696E !important;
+    background-image: none !important;
+    text-shadow: none !important;
+}
+
+.itemTypeButton[data-sani='SERIAL'] .sapMBtnInner{
+    background-color:  #E78C07 !important;
+    border-color:  #E78C07 !important;
+    background-image: none !important;
+    text-shadow: none !important;
+} */
+
+/* tr[data-sani="GREEN"]{
+    background: #ABE2AB !important;
+  }
+
+tr[data-sani="RED"]{
+    background: #ff6363 !important;
+  } */
+/* tr[data-sani="NOCOLOR"]{
+    background: #ABE2AB !important;
+  }#C14646
+
+ */
+
+ .printLabelTable{
+    padding:0 4px 0 4px;
+ }

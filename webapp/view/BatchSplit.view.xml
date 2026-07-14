@@ -1,0 +1,191 @@
+<mvc:View
+    controllerName="com.wel.goodsreceipt.controller.BatchSplit"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic"
+	xmlns:l="sap.ui.layout">
+        <semantic:SemanticPage
+            id="BatchSplitPage"
+            preserveHeaderStateOnScroll="true"
+            showFooter="true">
+                <semantic:titleHeading>
+                    <Title
+                        id="id_Itemno_batchSplit"
+                        text="{i18n>BatchSplit}"
+                        wrapping="true"/>
+                </semantic:titleHeading>
+                <semantic:headerContent>
+                 <VBox
+                    id="id_third_column_titleheading"
+                    justifyContent="Center"
+                    class="sapUiTinyMarginBottom">
+                        <l:HorizontalLayout id="id_thirdcol_header">
+                            <Label
+                                id="id_batch_split_materialno"
+                                text="{i18n>Materialno}"
+                                width="8em"/>
+                            <Text
+                                id="id_batch_split_page_text"
+                                class="sapUiSmallMarginEnd"
+                                text=":------------"
+                                width=".1em"></Text>
+                            <Text id="id_text_for_Materialno"/>
+                        </l:HorizontalLayout>
+                    </VBox>
+                    <VBox
+                        id="id_third_column_titleheading1"
+                        justifyContent="Center"
+                        class="sapUiTinyMarginBottom">
+                            <l:HorizontalLayout id="id_thirdcol_header1">
+                                <Label
+                                    id="id_batch_split_OrderQty"
+                                    text="{i18n>orderQuantity}"
+                                    width="8em"/>
+                                <Text
+                                    id="id_batch_split_page_text1"
+                                    class="sapUiSmallMarginEnd"
+                                    text=":"
+                                    width=".1em"></Text>
+                                <Text id="id_text_for_orderQuantity"/>
+                            </l:HorizontalLayout>
+                    </VBox>
+                    <VBox
+                        id="id_third_column_titleheading2"
+                        justifyContent="Center"
+                        class="sapUiTinyMarginBottom">
+                            <l:HorizontalLayout id="id_thirdcol_header2">
+                                <Label
+                                    id="id_batch_split_receivQuantity"
+                                    text="{i18n>receivQuantity}"
+                                    width="8em"/>
+                                <Text
+                                    id="id_batch_split_page_text2"
+                                    class="sapUiSmallMarginEnd"
+                                    text=":"
+                                    width=".1em"></Text>
+                                <Text id="id_text_for_receivQuantity"/>
+                            </l:HorizontalLayout>
+                    </VBox>
+                </semantic:headerContent>
+                <semantic:content>
+                    <Table
+                        id="id_BatchSplit_table"
+                        inset="false"
+                        noDataText="{i18n>AddBatch}"
+                        items="{ path: 'itemJsonModel>/results' }"
+                        mode="Delete"
+                  		alternateRowColors="true"
+                        delete="onItemDeletePress">
+                        <headerToolbar>
+                            <OverflowToolbar id="id_batchsplit_overvlow">
+                                    <content>
+                                        <!-- <VBox id="id_headertoolbar">
+                                            <Title
+                                                id="id_header_overFlowToolbar_batchSplit_Table_for_order_qty"
+                                                level="H5"
+                                                text=""/>
+                                            <Title
+                                                id="id_header_overFlowToolbar_batchSplit_Table_for_received_qty"
+                                                level="H5"
+                                                text=""/>
+                                        </VBox> -->
+                                        <ToolbarSpacer id="id_toolbar_spacer_batch_split"/>
+                                        <Button
+                                            id="id_button_add_split_batchsplit"
+                                            type="Emphasized"
+                                            text="Split"
+                                            class="sapUiTinyMarginEnd"
+                                            tooltip="Batch Split"
+                                            icon="sap-icon://add"
+                                            press="onBatchSplitButtonPress"/>
+                                    </content>
+                                </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column
+                                id="id_SubItem_column"
+                                width="4rem"
+                                popinDisplay="Inline">
+                                <Text id="id_subItem_no" text="{i18n>SubItemNo}"/>
+                            </Column>
+                            <Column
+                                id="id_unit_column"
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                width="4rem"
+                                hAlign="Center"
+                                popinDisplay="Inline">
+                                <Text id="_IDGenText11" text="{i18n>unit}"/>
+                            </Column>
+                            <Column
+                                id="id_posting_quantity"
+                                demandPopin="false"
+                                width="7rem"
+                                hAlign="Center"
+                                popinDisplay="Inline">
+                                <Text
+                                    id="id_textfield_for_postingQuantity"
+                                    text="{i18n>postingQuantity}"/>
+                            </Column>
+                            <Column
+                                id="id_batch_column"
+                                demandPopin="false"
+                                width="7rem"
+                                hAlign="Center"
+                                popinDisplay="Inline">
+                                <Text
+                                    id="id_bat_textfield"
+                                    text="{i18n>batch}"/>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="_IDGenColumnListItem1">
+                                <cells>
+                                    <ObjectIdentifier
+                                        id="id_gen_SubItemNo"
+                                        title="{itemJsonModel>SubItemno}"
+                                        text=""/>
+                                    <Text
+                                        id="_IDGenText17"
+                                        text="{itemJsonModel>Uom}"/>
+                                    <Input
+                                        id="id_PostingQuantityInputField"
+                                        value="{itemJsonModel>Postingquantity}"
+                                        liveChange="onLiveChangePostingQuantity"
+                                        type="Number"
+                                        width="6rem"
+                                        class="input_css"/>
+                                    <Input
+                                        id="id_batch_input_field"
+                                        liveChange="onLiveChangeBatch"
+                                        value="{itemJsonModel>Batchno}"
+                                        type="Text"
+                                        width="6rem"
+                                        class="input_css"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </semantic:content>
+                    <!--Semantic ShareMenu Buttons-->
+                    <semantic:closeAction>
+                        <semantic:CloseAction
+                            id="closeColumn"
+                            press="onCloseBatchPress"/>
+                    </semantic:closeAction>
+                    <semantic:positiveAction>
+                        <semantic:PositiveAction
+                            id="id_savepo_batch_split"
+                            visible="true"
+                            text="{i18n>Save}"
+                            press="onSavePOBatchItemButtonPress"/>
+                    </semantic:positiveAction>
+                    <semantic:negativeAction>
+                        <semantic:NegativeAction
+                            id="id_reset"
+                            visible="true"
+                            text="{i18n>Cancel}"
+                            press="onCloseBatchPress"/>
+                    </semantic:negativeAction>
+                </semantic:SemanticPage>
+</mvc:View>
