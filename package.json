@@ -11,8 +11,7 @@
 	],
 	"main": "webapp/index.html",
 	"scripts": {
-   
-    "start-test": "fiori run --open \"test/flp.html#app-preview\"",
+    "start": "fiori run --open \"test/flp.html#app-preview\"",
     "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flp.html#app-preview\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
     "deploy": "npm run build && fiori deploy --config ui5-deploy.yaml",

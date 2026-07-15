@@ -68,19 +68,25 @@
 
             <HBox >
                <VBox>
-                  
+                   <Title text="Range"/>
 
-                    <HBox>  
+                    <HBox alignItems="Center">  
                     
-                        <Label text="From"/>
-                        <Input id="fromSerial1"/>
+                        <Label text="From"  width="4rem"/>
+                        <Input id="fromSerial1"  width="10rem" />
 
-                        <Label text="To"/>
-                        <Input id="toSerial1"/>
+                        <Label text="To" width="3rem"  class="sapUiSmallMarginBegin"/>
+
+
+                        <Input id="toSerial1" width="10rem"/>
+
+
 
                         <Button
                             text="Fill Range"
-                            press=".onFillRange"/>
+                            press="onFillRange"
+                            class="sapUiSmallMarginBegin"
+                            />
                     </HBox>
                 </VBox>
             </HBox>

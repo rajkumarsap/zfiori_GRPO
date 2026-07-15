@@ -14,6 +14,8 @@ sap.ui.define([
         /* =========================================================== */
 
         onInit: function () {
+            debugger;
+            console.log("line here ");
             //console.log("serial Controllers || OnInit");
             this._isSmartMeter = null;
             this._serialPostingQuantity = null;
@@ -310,6 +312,7 @@ sap.ui.define([
             } else {
                 return [];
             }
-        }        
+        },
+              
     });
 });
